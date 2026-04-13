@@ -2,10 +2,14 @@
 
 #include "structs.hpp"
 #include "Swiat.hpp"
+
 class Swiat;
 
 class Organizm{
     private:
+        
+
+    protected:
         int sila;
         int inicjatywa;
 
@@ -13,10 +17,23 @@ class Organizm{
         Swiat* world;
         int age;
 
-    public:
+        
+        virtual void kolizja(Organizm* other)=0;
+        virtual bool czyOdbilAtak(Organizm* attacker)=0;
+        char asciiSymbol;
+        
 
-        virtual void akcja();
-        virtual void kolizja();
-        virtual void rysowanie();
+        
+    public:
+        Organizm(int x, int y, Swiat* world);
+        void setInitailCords(Vector2d cords);
+        void rysowanie();
+        virtual void akcja()=0;
+        int getSila();
+        int getInicjatywa();
+        int getAge();
+        int getX();
+        int getY();
+        int getAscii();
 
 };  
