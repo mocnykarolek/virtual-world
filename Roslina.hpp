@@ -7,14 +7,16 @@
 class Roslina : public Organizm {
 
     private:
-        int inicjatywa = 0;
+    
     
     protected:
-
+        // virtual void akcja()=0;
+        virtual bool czyOdbilAtak(Organizm* attacker)=0;
     
     public:
-        void akcja();
-        void kolizja(Organizm* other);
+        Roslina(int x, int y, Swiat* world);
+        virtual void akcja();
+        virtual void kolizja(Organizm* other)=0;
         void rysowanie();
 
 

@@ -22,7 +22,7 @@ class Swiat{
         std::vector<std::string> logs;
         void addOrganism(Organizm* organizm);
         void removeOrganism(Organizm* organizm);
-        void handle_input();
+        bool handle_input();
         void drawFrame();
         void drawBackGround();
         void generateInitialWorld();
@@ -30,6 +30,8 @@ class Swiat{
         void render_logs();
 
         Vector2d random_unoccupied_cords();
+        void collision_handling();
+
 
     protected:
         
@@ -39,8 +41,8 @@ class Swiat{
         void run();
         Swiat();
         void drawOrganism(Organizm* org);
-        Vector2d getCell(int x, int y);
-        Vector2d isOccupied(int x, int y);
+        Organizm* getCell(Vector2d c);
+        bool isOccupied(int x, int y);
         std::vector<Vector2d> getFreeNeighbours(int x, int y);
 
         ~Swiat();

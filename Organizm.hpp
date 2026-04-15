@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include "structs.hpp"
 #include "Swiat.hpp"
 
@@ -12,14 +12,16 @@ class Organizm{
     protected:
         int sila;
         int inicjatywa;
-
+        std::string name;
         struct Vector2d cords;
+        Vector2d prev_cords;
         Swiat* world;
         int age;
-
+        bool alive;
         
-        virtual void kolizja(Organizm* other)=0;
+        
         virtual bool czyOdbilAtak(Organizm* attacker)=0;
+        Vector2d randomMove();
         char asciiSymbol;
         
 
@@ -27,6 +29,7 @@ class Organizm{
     public:
         Organizm(int x, int y, Swiat* world);
         void setInitailCords(Vector2d cords);
+        virtual void kolizja(Organizm* other);
         void rysowanie();
         virtual void akcja()=0;
         int getSila();
@@ -35,5 +38,9 @@ class Organizm{
         int getX();
         int getY();
         int getAscii();
+        void incrementAge();
+        bool is_alive();
+        void kill();
+        virtual ~Organizm() = default;
 
 };  

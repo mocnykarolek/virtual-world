@@ -5,6 +5,8 @@
 
 
 #include "Czlowiek.hpp"
+#include "Trawa.hpp"
+#include "Wilk.hpp"
 
 #define WIDTH 22
 #define HEIGHT 22
@@ -25,7 +27,7 @@ Swiat::Swiat(){
 
     numer_tury = 1;
     win = newwin(HEIGHT, WIDTH,1,1);
-    menu = newwin(HEIGHT, WIDTH, 1, WIDTH+1);
+    menu = newwin(HEIGHT, WIDTH*2, 1, WIDTH+1);
 
     grid.resize(20, std::vector<Organizm*>(20, nullptr));
     Vector2d test = random_unoccupied_cords();
@@ -40,12 +42,12 @@ Swiat::Swiat(){
 Vector2d Swiat::random_unoccupied_cords(){
     
     Vector2d cords;
-    int random_x = std::rand()%20;
-    int random_y = std::rand()%20;
+    int random_x = (std::rand()%19)+1;
+    int random_y = (std::rand()%19)+1;
     
     while(grid[random_x][random_y] != nullptr){
-        random_x = std::rand()%20;
-        random_y = std::rand()%20;
+        random_x = (std::rand()%19)+1;
+        random_y = (std::rand()%19)+1;
 
     }
     cords.x = random_x;
@@ -64,11 +66,29 @@ void Swiat::drawOrganism(Organizm* org){
 
 }
 
+Organizm* Swiat::getCell(Vector2d c){
+    
+    return grid[c.y][c.x];
+
+
+}
+
+bool Swiat::isOccupied(int x, int y){
+
+    if(grid[y][x] == nullptr){
+        return false;
+    }
+    return true;
+
+
+}
+
 void Swiat::render_logs(){
     int max_logs = 18;
     while((int)logs.size() > max_logs) {logs.erase(logs.begin());}
     
     werase(menu);
+    mvwprintw(menu, 0, 0," Numer Tury: %d", this->numer_tury);
     for (int i = 0; i < (int)logs.size(); i++)
     {
         mvwprintw(menu, i+1, 1,"%s", logs[i].c_str());
@@ -79,7 +99,7 @@ void Swiat::render_logs(){
 }
 
 void Swiat::add_log(std::string log){
-
+    log = "L: " + log;
     logs.push_back(log);
 
 }
@@ -88,6 +108,28 @@ void Swiat::generateInitialWorld(){
 
     Czlowiek* czlowiek = new Czlowiek(19,19,this);
     addOrganism(czlowiek);
+    Trawa* trawa = new Trawa(1,1, this);
+    addOrganism(trawa);
+
+    // dodaj trawe
+    int grass_number = 3;
+    for (int i = 0; i < grass_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Trawa(freeCords.x,freeCords.y, this));
+    }
+
+    int wolf_number = 5;
+
+    for (int i = 0; i < wolf_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Wilk(freeCords.x,freeCords.y, this));
+    }
+
+
+
+    
     // Vector2d ranCords;
     // ranCords.x = 10;
     // ranCords.y = 10;
@@ -96,10 +138,26 @@ void Swiat::generateInitialWorld(){
 
 }
 
+void Swiat::collision_handling(){
 
+    for (Organizm* organizm : organizmy)
+    {
+        if(organizm->is_alive() == false){{
+            this->removeOrganism(organizm);
+        }}
+    }
+    
+    
+
+
+}
 
 void Swiat::wykonajTure(){
-
+    logs.erase(logs.begin(), logs.end());
+    add_log("Nowa Tura");
+    if(numer_tury == 4){
+        add_log("nigger");
+    }
     
     sort(organizmy.begin(), organizmy.end(), [](Organizm*a, Organizm* b){ 
         if(a->getInicjatywa() == b->getInicjatywa()){
@@ -112,12 +170,16 @@ void Swiat::wykonajTure(){
     for (Organizm* organizm : organizmy)
     {
         organizm->akcja();
+        organizm->incrementAge();
+        
+        
     }
+    collision_handling();
     
 
 
     render_logs();
-    rysujSwiat();
+    // rysujSwiat();
 
 
 
@@ -202,11 +264,35 @@ void Swiat::addOrganism(Organizm* organizm){
 
 }
 
+void Swiat::removeOrganism(Organizm* organizm){
 
-void Swiat::handle_input(){
+    grid[organizm->getY()][organizm->getX()] = nullptr;
 
-    
+    for (int i = 0; i < organizmy.size(); i++)
+    {
+        if(organizmy[i] == organizm){
+            organizmy.erase(i + organizmy.begin());
+            break;
+        }
+    }
+    delete(organizm);
 
+
+}
+
+
+bool Swiat::handle_input(){
+
+    int ch = getch();
+
+    while(ch != 'n' && ch != 'e'){
+        ch = getch();
+
+    }
+    if(ch == 'e'){
+        return true;
+    }
+    return false;
 }
 
 void Swiat::run(){
@@ -214,12 +300,18 @@ void Swiat::run(){
     
     int GameOver = false;
 
+    rysujSwiat();
     while(!GameOver){
+        wrefresh(win);
+        GameOver = handle_input();
+        
 
         wykonajTure();
+        
+        
 
         numer_tury++;
-
+        rysujSwiat();
     }
     
 

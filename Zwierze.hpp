@@ -8,12 +8,13 @@ class Zwierze : public Organizm {
     private:
 
     protected:
-        virtual void akcja()=0;
-        virtual void randomMove()=0;
+        virtual void akcja();
+        // Vector2d randomMove();
         // virtual void rozmnarzanie();
         virtual bool czyOdbilAtak(Organizm* attacker)=0;
         // virtual void setInitailCords(Vector2d cords);
-
+        // virtual void kolizja();
+        // virtual void kolizja(Organizm* other);
 
     public:
         
