@@ -71,6 +71,8 @@ void Organizm::kolizja(Organizm* other){
     std::string ve = "Wilk zaatakowal organizm: " + other->name + " o sile " + std::to_string(other->getSila());
     this->world->add_log(ve);
 }
+
+    
     if(this->getSila() > other->getSila()){
         other->kill();
     }else if(this->getSila() < other->getSila()){

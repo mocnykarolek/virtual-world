@@ -8,6 +8,7 @@ class Czlowiek : public Zwierze {
 
     private:
         // char asciiSymbol;
+        
 
     protected:
 
@@ -19,6 +20,7 @@ class Czlowiek : public Zwierze {
         void randomMove();
         bool czyOdbilAtak(Organizm* attacker);
         void kolizja(Organizm* other);
+        void nextMove(int direction);
     
 
 

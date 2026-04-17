@@ -28,7 +28,7 @@ Swiat::Swiat(){
     numer_tury = 1;
     win = newwin(HEIGHT, WIDTH,1,1);
     menu = newwin(HEIGHT, WIDTH*2, 1, WIDTH+1);
-
+    next_human_move = 0;
     grid.resize(20, std::vector<Organizm*>(20, nullptr));
     Vector2d test = random_unoccupied_cords();
     std::string test_log = "X: " + std::to_string(test.x) + " Y: " + std::to_string(test.y) + "\n";
@@ -155,9 +155,7 @@ void Swiat::collision_handling(){
 void Swiat::wykonajTure(){
     logs.erase(logs.begin(), logs.end());
     add_log("Nowa Tura");
-    if(numer_tury == 4){
-        add_log("nigger");
-    }
+
     
     sort(organizmy.begin(), organizmy.end(), [](Organizm*a, Organizm* b){ 
         if(a->getInicjatywa() == b->getInicjatywa()){
@@ -279,20 +277,50 @@ void Swiat::removeOrganism(Organizm* organizm){
 
 
 }
+int Swiat::get_human_dir() const{
+
+    return next_human_move;
+
+}
 
 
 bool Swiat::handle_input(){
+    
+    int ch;
+    bool end_of_check = false;
 
-    int ch = getch();
-
-    while(ch != 'n' && ch != 'e'){
+    while(!end_of_check){
         ch = getch();
+        switch (ch)
+        {
+        case 'w':
+            next_human_move = NORTH;
+            end_of_check = true;
+            break;
+        case 'd':
+            next_human_move = EAST;
+            end_of_check = true;
+            break;
+        case 's':
+            next_human_move = SOUTH;
+            end_of_check = true;
+            break;
+        case 'a':
+            next_human_move = WEST;
+            end_of_check = true;
+            break;
+        case 'e':
+            return true;
+        
+        default:
+            break;
+        }
 
-    }
-    if(ch == 'e'){
-        return true;
+        
+
     }
     return false;
+
 }
 
 void Swiat::run(){
@@ -303,6 +331,7 @@ void Swiat::run(){
     rysujSwiat();
     while(!GameOver){
         wrefresh(win);
+        
         GameOver = handle_input();
         
 

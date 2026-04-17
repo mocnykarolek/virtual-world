@@ -13,7 +13,7 @@ class Swiat{
         // Organizm* organizmy;
         std::vector<Organizm*> organizmy;
         std::vector<std::vector<Organizm*>> grid;
-
+        int next_human_move;
         int numer_tury;
         void wykonajTure();
         void rysujSwiat();
@@ -26,7 +26,7 @@ class Swiat{
         void drawFrame();
         void drawBackGround();
         void generateInitialWorld();
-
+        // void get_human_dir();
         void render_logs();
 
         Vector2d random_unoccupied_cords();
@@ -44,7 +44,7 @@ class Swiat{
         Organizm* getCell(Vector2d c);
         bool isOccupied(int x, int y);
         std::vector<Vector2d> getFreeNeighbours(int x, int y);
-
+        int get_human_dir() const;
         ~Swiat();
 
     
