@@ -66,48 +66,79 @@ void Organizm::kill(){
 
 
 void Organizm::kolizja(Organizm* other){
-    // bool can_move = true;
+
     world->add_log("Kolizja");
-    // if (this->name == "Wilk") {
-
-    // std::string ve = "Wilk zaatakowal organizm: " + other->name + " o sile " + std::to_string(other->getSila());
-
-    // this->world->add_log(ve);
-    // }
-
-    // if(this->getAscii() == other->getAscii()){
-    //     Vector2d new_organism_cords = world->getFreeNeighbours(this->cords);
-    //     world->addOrganism(new )
-    // }
-    if(this->getAscii() == other->getAscii()){
-        new_organism(this->cords);
-        can_organism_move = false;
-    }else{
     
-    if(this->getSila() > other->getSila()){
+    if(this->getAscii() == other->getAscii()){ // reporduction
 
-        other->kill();
-    }else if(this->getSila() < other->getSila()){
-        this->kill();
-
-    }else{
-
-        other->kill();
+        // new_organism(this->cords);
+        can_organism_move = false;
 
 
+        std::vector<Vector2d> child_cords = world->getFreeNeighbours(this->cords);
+        if(!child_cords.empty()){
+            
+            new_organism(child_cords[0]);
 
+            
+        }else{
+
+
+            world->add_log("Brak miejsca na rozmnazanie");
+        }
+        
     }
+    else{ // combat
+        // if(this->getSila() > other->getSila()){
+
+        //     other->kill();
+        // }else if(this->getSila() < other->getSila()){
+        //     this->kill();
+
+        // }else{
+
+        //     other->kill();
+        // }
+        if(czyOdbilAtak(other)){
+            eaten_plant(this);
+
+            other->kill();
+        }
+        else {
+            this->kill();
+        }
+
+        
 }
     // return can_move;
 
 }
 
-bool Organizm::czyOdbilAtak(Organizm* attacker){
-    
+void Organizm::increaseStrength(int points){
+    this->sila = this->sila + points;
+}
 
-    return false;
+
+bool Organizm::czyOdbilAtak(Organizm* attacker){
+        if(this->getSila() > attacker->getSila()){
+            return true;
+            
+        }else if(this->getSila() < attacker->getSila()){
+            return false;
+            
+
+
+        }else{
+            return true;
+            
+        }
+
 
 }
+
+
+
+void Organizm::eaten_plant(Organizm* attacker){}
 
 void Organizm::setInitailCords(Vector2d cords){
 

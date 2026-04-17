@@ -3,7 +3,7 @@
 #include "Zwierze.hpp"
 
 class Zwierze;
-class Wilk : public Zwierze {
+class Owca : public Zwierze {
 
 
     private:
@@ -14,7 +14,7 @@ class Wilk : public Zwierze {
 
     public:
 
-        Wilk(int x, int y, Swiat* world);
+        Owca(int x, int y, Swiat* world);
         void new_organism(Vector2d child_cords);
         // void akcja();
         

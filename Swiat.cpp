@@ -7,6 +7,11 @@
 #include "Czlowiek.hpp"
 #include "Trawa.hpp"
 #include "Wilk.hpp"
+#include "Owca.hpp"
+#include "Mlecz.hpp"
+#include "Lis.hpp"
+
+#include "Guarana.hpp"
 
 #define WIDTH 22
 #define HEIGHT 22
@@ -31,8 +36,7 @@ Swiat::Swiat(){
     next_human_move = 0;
     grid.resize(WORLD_HEIGHT +1, std::vector<Organizm*>(WORLD_HEIGHT +1, nullptr));
     Vector2d test = random_unoccupied_cords();
-    std::string test_log = "X: " + std::to_string(test.x) + " Y: " + std::to_string(test.y) + "\n";
-    add_log(test_log);
+
 
     generateInitialWorld();
 
@@ -73,21 +77,23 @@ Organizm* Swiat::getCell(Vector2d c){
 
 }
 
-Vector2d Swiat::getFreeNeighbours(Vector2d vec){
+std::vector<Vector2d> Swiat::getFreeNeighbours(Vector2d vec){
+
+    std::vector<Vector2d> positions_array;
     if(vec.y < WORLD_HEIGHT && grid[vec.y+1][vec.x] == nullptr){
-        vec.y++;
-        return vec;
-    } else if(vec.y > 0 && grid[vec.y-1][vec.x] == nullptr){
-        vec.y = vec.y -1;
-        return vec;
+        
+        positions_array.push_back({vec.x, vec.y+1});
+    } else if(vec.y > 1 && grid[vec.y-1][vec.x] == nullptr){
+        positions_array.push_back({vec.x, vec.y-1});
+        
     } else if(vec.x < WORLD_WIDTH && grid[vec.y][vec.x+1] == nullptr){
-        vec.x++;
-        return vec;
-    } else if(vec.x > 0 && grid[vec.y][vec.x-1] == nullptr){
-        vec.x = vec.x -1;
-        return vec;
+        positions_array.push_back({vec.x+1, vec.y});
+       
+    } else if(vec.x > 1 && grid[vec.y][vec.x-1] == nullptr){
+        positions_array.push_back({vec.x-1, vec.y});
+        
     }
-    return vec;
+    return positions_array;
 }
 
 bool Swiat::isOccupied(int x, int y){
@@ -128,6 +134,7 @@ void Swiat::generateInitialWorld(){
     Trawa* trawa = new Trawa(1,1, this);
     addOrganism(trawa);
 
+    
     // dodaj trawe
     int grass_number = 3;
     for (int i = 0; i < grass_number; i++)
@@ -144,6 +151,33 @@ void Swiat::generateInitialWorld(){
         addOrganism(new Wilk(freeCords.x,freeCords.y, this));
     }
 
+    int sheep_number = 6;
+    for (int i = 0; i < sheep_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Owca(freeCords.x,freeCords.y, this));
+    }
+
+    int dandelion_number = 3;
+    for (int i = 0; i < dandelion_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Mlecz(freeCords.x,freeCords.y, this));
+    }
+
+    int fox_number = 4;
+    for (int i = 0; i < fox_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Lis(freeCords.x,freeCords.y, this));
+    }
+
+    int guarana_number = 5;
+    for (int i = 0; i < guarana_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Guarana(freeCords.x,freeCords.y, this));
+    }
 
 
     
@@ -179,6 +213,8 @@ void Swiat::collision_handling(){
 
 void Swiat::wykonajTure(){
     logs.erase(logs.begin(), logs.end());
+    std::string test_log = "Karol Oledzki 208226";
+    add_log(test_log);
     add_log("Nowa Tura");
 
     

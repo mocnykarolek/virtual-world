@@ -45,7 +45,7 @@ class Swiat{
         void drawOrganism(Organizm* org);
         Organizm* getCell(Vector2d c);
         bool isOccupied(int x, int y);
-        Vector2d getFreeNeighbours(Vector2d vec);
+        std::vector<Vector2d> getFreeNeighbours(Vector2d vec);
         int get_human_dir() const;
         ~Swiat();
 

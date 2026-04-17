@@ -20,11 +20,12 @@ Wilk::Wilk(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
 }
 
-bool Wilk::czyOdbilAtak(Organizm* attacker){}
+// bool Wilk::czyOdbilAtak(Organizm* attacker){}
 
-void Wilk::new_organism(Vector2d parent_cords){
+void Wilk::new_organism(Vector2d child_cords){
 
 
-    world->addOrganism(new Wilk(parent_cords.x, parent_cords.y, world));
+    world->addOrganism(new Wilk(child_cords.x, child_cords.y, world));
+    world->add_log("Rodzi sie wilk");
 
 }

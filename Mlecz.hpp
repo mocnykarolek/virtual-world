@@ -3,7 +3,7 @@
 #include "Roslina.hpp"
 
 class Roslina;
-class Trawa : public Roslina {
+class Mlecz : public Roslina {
 
 
     private:
@@ -14,14 +14,14 @@ class Trawa : public Roslina {
 
     public:
 
-        Trawa(int x, int y, Swiat* world);
+        Mlecz(int x, int y, Swiat* world);
         // void akcja();
         
         bool czyOdbilAtak(Organizm* attacker);
         
         // void reporoduction_attempt(Organizm* o);
         void new_organism(Vector2d child_cords);
-    
+        void akcja();
 
 
 };

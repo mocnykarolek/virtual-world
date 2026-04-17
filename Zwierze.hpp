@@ -11,7 +11,7 @@ class Zwierze : public Organizm {
         virtual void akcja();
         // Vector2d randomMove();
         // virtual void rozmnarzanie();
-        virtual bool czyOdbilAtak(Organizm* attacker)=0;
+        // virtual bool czyOdbilAtak(Organizm* attacker);
         // virtual void setInitailCords(Vector2d cords);
         // virtual void kolizja();
         // virtual void kolizja(Organizm* other);
@@ -19,11 +19,11 @@ class Zwierze : public Organizm {
     public:
         
         Zwierze(int x, int y, Swiat* world);
-        int getSila() const;
-        int getInicjatywa() const;
-        int getAge();
-        int getX();
-        int getY() const;
+        // int getSila() const;
+        // int getInicjatywa() const;
+        // int getAge();
+        // int getX();
+        // int getY() const;
 
 
         

@@ -71,7 +71,7 @@ void Czlowiek::akcja(){
     
 
 }
-void Czlowiek::randomMove(){
+Vector2d Czlowiek::randomMove(){
     
 
 

@@ -5,13 +5,13 @@ Zwierze::Zwierze(int x, int y, Swiat* world) : Organizm(x, y ,world){
                                                                                         
 }
 
-bool Zwierze::czyOdbilAtak(Organizm* attacker){
+// bool Zwierze::czyOdbilAtak(Organizm* attacker){
 
-    attacker->getSila();
+//     attacker->getSila();
     
 
-    return false;
-}
+//     return false;
+// }
 
 // void Zwierze::kolizja(Organizm* other){
 

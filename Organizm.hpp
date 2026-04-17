@@ -20,12 +20,12 @@ class Organizm{
         bool alive;
         
         
-        virtual bool czyOdbilAtak(Organizm* attacker)=0;
-        Vector2d randomMove();
+        virtual bool czyOdbilAtak(Organizm* attacker);
+        virtual Vector2d randomMove();
         char asciiSymbol;
         bool can_organism_move;
         virtual void new_organism(Vector2d parent_cords)=0;
-
+        virtual void eaten_plant(Organizm* attacker);
         
     public:
         Organizm(int x, int y, Swiat* world);
@@ -33,7 +33,7 @@ class Organizm{
         virtual void kolizja(Organizm* other);
         void rysowanie();
         virtual void akcja()=0;
-        
+        void increaseStrength(int points);
         int getSila();
         int getInicjatywa();
         int getAge();

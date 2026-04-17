@@ -19,9 +19,13 @@ Trawa::Trawa(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 // }
         
 bool Trawa::czyOdbilAtak(Organizm* attacker){return false;}
-void Trawa::kolizja(Organizm* other){}
 
-void Trawa::new_organism(Vector2d parent_cords){
 
-    
+
+
+
+void Trawa::new_organism(Vector2d child_cords){
+    world->addOrganism(new Trawa(child_cords.x ,child_cords.y,world));
+    world->add_log("Trawa sie rozsiala");
+
 }
