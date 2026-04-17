@@ -32,16 +32,16 @@ void Czlowiek::akcja(){
 
     Vector2d new_cords = this->cords;
     int next_move = world->get_human_dir();
-    if(next_move == NORTH && this->cords.y > 0){
+    if(next_move == NORTH && this->cords.y > 1){
         new_cords.y--;
         world->add_log("Czlowiek idzie do gory");
-    }else if(next_move == EAST && this->cords.x < WORLD_WIDTH-1){
+    }else if(next_move == EAST && this->cords.x < WORLD_WIDTH){
         new_cords.x++;
         world->add_log("Czlowiek idzie w prawo");
-    }else if(next_move == SOUTH && this->cords.y < WORLD_HEIGHT-1){
+    }else if(next_move == SOUTH && this->cords.y < WORLD_HEIGHT){
         world->add_log("Czlowiek idzie w dol");
         new_cords.y++;
-    } else if(next_move == WEST && this->cords.x > 0){
+    } else if(next_move == WEST && this->cords.x > 1){
         world->add_log("Czlowiek idzie w lewo");
         new_cords.x--;
     }
@@ -82,3 +82,4 @@ bool Czlowiek::czyOdbilAtak(Organizm* attacker){
 void Czlowiek::kolizja(Organizm* other){
     
 }
+void Czlowiek::new_organism(Vector2d parent_cords){}

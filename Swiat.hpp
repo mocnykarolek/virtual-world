@@ -20,7 +20,7 @@ class Swiat{
         WINDOW *win;
         WINDOW* menu;
         std::vector<std::string> logs;
-        void addOrganism(Organizm* organizm);
+        
         void removeOrganism(Organizm* organizm);
         bool handle_input();
         void drawFrame();
@@ -41,10 +41,11 @@ class Swiat{
         void add_log(std::string log);
         void run();
         Swiat();
+        void addOrganism(Organizm* organizm);
         void drawOrganism(Organizm* org);
         Organizm* getCell(Vector2d c);
         bool isOccupied(int x, int y);
-        std::vector<Vector2d> getFreeNeighbours(int x, int y);
+        Vector2d getFreeNeighbours(Vector2d vec);
         int get_human_dir() const;
         ~Swiat();
 

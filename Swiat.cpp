@@ -29,7 +29,7 @@ Swiat::Swiat(){
     win = newwin(HEIGHT, WIDTH,1,1);
     menu = newwin(HEIGHT, WIDTH*2, 1, WIDTH+1);
     next_human_move = 0;
-    grid.resize(20, std::vector<Organizm*>(20, nullptr));
+    grid.resize(WORLD_HEIGHT +1, std::vector<Organizm*>(WORLD_HEIGHT +1, nullptr));
     Vector2d test = random_unoccupied_cords();
     std::string test_log = "X: " + std::to_string(test.x) + " Y: " + std::to_string(test.y) + "\n";
     add_log(test_log);
@@ -42,12 +42,12 @@ Swiat::Swiat(){
 Vector2d Swiat::random_unoccupied_cords(){
     
     Vector2d cords;
-    int random_x = (std::rand()%19)+1;
-    int random_y = (std::rand()%19)+1;
+    int random_x = (std::rand() % WORLD_WIDTH) + 1;
+    int random_y = (std::rand() % WORLD_HEIGHT) + 1;
     
     while(grid[random_x][random_y] != nullptr){
-        random_x = (std::rand()%19)+1;
-        random_y = (std::rand()%19)+1;
+        random_x = (std::rand() % WORLD_WIDTH) + 1;
+        random_y = (std::rand() % WORLD_HEIGHT) + 1;
 
     }
     cords.x = random_x;
@@ -71,6 +71,23 @@ Organizm* Swiat::getCell(Vector2d c){
     return grid[c.y][c.x];
 
 
+}
+
+Vector2d Swiat::getFreeNeighbours(Vector2d vec){
+    if(vec.y < WORLD_HEIGHT && grid[vec.y+1][vec.x] == nullptr){
+        vec.y++;
+        return vec;
+    } else if(vec.y > 0 && grid[vec.y-1][vec.x] == nullptr){
+        vec.y = vec.y -1;
+        return vec;
+    } else if(vec.x < WORLD_WIDTH && grid[vec.y][vec.x+1] == nullptr){
+        vec.x++;
+        return vec;
+    } else if(vec.x > 0 && grid[vec.y][vec.x-1] == nullptr){
+        vec.x = vec.x -1;
+        return vec;
+    }
+    return vec;
 }
 
 bool Swiat::isOccupied(int x, int y){
@@ -106,7 +123,7 @@ void Swiat::add_log(std::string log){
 
 void Swiat::generateInitialWorld(){
 
-    Czlowiek* czlowiek = new Czlowiek(20,20,this);
+    Czlowiek* czlowiek = new Czlowiek(10,10,this);
     addOrganism(czlowiek);
     Trawa* trawa = new Trawa(1,1, this);
     addOrganism(trawa);
@@ -172,14 +189,17 @@ void Swiat::wykonajTure(){
         else return a->getInicjatywa() < b->getInicjatywa();
     }
     );
-
-    for (Organizm* organizm : organizmy)
+    int start_number = organizmy.size();
+    for (int i = 0; i < start_number; i++)
     {
-        organizm->akcja();
-        organizm->incrementAge();
-        
-        
+        if(organizmy[i]->is_alive()){
+            organizmy[i]->akcja();
+            organizmy[i]->incrementAge();
+        }
     }
+    
+
+
     collision_handling();
     
 

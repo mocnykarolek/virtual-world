@@ -19,6 +19,8 @@ class Trawa : public Roslina {
         
         bool czyOdbilAtak(Organizm* attacker);
         void kolizja(Organizm* other);
+
+        void new_organism(Vector2d parent_cords);
     
 
 

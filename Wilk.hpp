@@ -15,6 +15,7 @@ class Wilk : public Zwierze {
     public:
 
         Wilk(int x, int y, Swiat* world);
+        void new_organism(Vector2d parent_cords);
         // void akcja();
         
         bool czyOdbilAtak(Organizm* attacker);

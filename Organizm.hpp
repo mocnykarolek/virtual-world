@@ -23,7 +23,8 @@ class Organizm{
         virtual bool czyOdbilAtak(Organizm* attacker)=0;
         Vector2d randomMove();
         char asciiSymbol;
-        
+        bool can_organism_move;
+        virtual void new_organism(Vector2d parent_cords)=0;
 
         
     public:
@@ -32,6 +33,7 @@ class Organizm{
         virtual void kolizja(Organizm* other);
         void rysowanie();
         virtual void akcja()=0;
+        
         int getSila();
         int getInicjatywa();
         int getAge();

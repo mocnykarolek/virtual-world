@@ -6,6 +6,7 @@ Organizm::Organizm(int x, int y, Swiat* world){
     cords.x = x;
     cords.y = y;
     this->world = world;
+    can_organism_move = 1;
     // this->asciiSymbol = 'd';
     // alive = true;
 
@@ -34,9 +35,9 @@ Vector2d Organizm::randomMove(){
         vec.x = this->cords.x + hor;
         vec.y = this->cords.y + ver;
 
-        condition_x = vec.x > 0 && vec.x < 20;
+        condition_x = vec.x > 0 && vec.x <= WORLD_WIDTH;
 
-        condition_y = vec.y > 0 && vec.y < 20;
+        condition_y = vec.y > 0 && vec.y < WORLD_HEIGHT;
 
     }while(!(condition_x && condition_y));
 
@@ -62,17 +63,29 @@ void Organizm::kill(){
     this->alive = false;
 }
 
+
+
 void Organizm::kolizja(Organizm* other){
-    
+    // bool can_move = true;
     world->add_log("Kolizja");
-    if (this->name == "Wilk") {
+    // if (this->name == "Wilk") {
 
-    std::string ve = "Wilk zaatakowal organizm: " + other->name + " o sile " + std::to_string(other->getSila());
-    this->world->add_log(ve);
-}
+    // std::string ve = "Wilk zaatakowal organizm: " + other->name + " o sile " + std::to_string(other->getSila());
 
+    // this->world->add_log(ve);
+    // }
+
+    // if(this->getAscii() == other->getAscii()){
+    //     Vector2d new_organism_cords = world->getFreeNeighbours(this->cords);
+    //     world->addOrganism(new )
+    // }
+    if(this->getAscii() == other->getAscii()){
+        new_organism(this->cords);
+        can_organism_move = false;
+    }else{
     
     if(this->getSila() > other->getSila()){
+
         other->kill();
     }else if(this->getSila() < other->getSila()){
         this->kill();
@@ -84,7 +97,8 @@ void Organizm::kolizja(Organizm* other){
 
 
     }
-
+}
+    // return can_move;
 
 }
 
