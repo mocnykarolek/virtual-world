@@ -66,8 +66,7 @@ void Organizm::kolizja(Organizm* other){
     
     world->add_log("Kolizja");
     if (this->name == "Wilk") {
-    // jeśli wypisujesz logi ncurses, zrób to tam. 
-    // tu piszę pseudo-kodem:
+
     std::string ve = "Wilk zaatakowal organizm: " + other->name + " o sile " + std::to_string(other->getSila());
     this->world->add_log(ve);
 }

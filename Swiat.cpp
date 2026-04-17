@@ -106,7 +106,7 @@ void Swiat::add_log(std::string log){
 
 void Swiat::generateInitialWorld(){
 
-    Czlowiek* czlowiek = new Czlowiek(19,19,this);
+    Czlowiek* czlowiek = new Czlowiek(20,20,this);
     addOrganism(czlowiek);
     Trawa* trawa = new Trawa(1,1, this);
     addOrganism(trawa);
@@ -138,13 +138,21 @@ void Swiat::generateInitialWorld(){
 
 }
 
+void Swiat::updateGrid(Organizm* o, Vector2d old_cords, Vector2d new_cords){
+    grid[old_cords.y][old_cords.x] = nullptr;
+    grid[new_cords.y][new_cords.x] = o;
+    
+}
+
 void Swiat::collision_handling(){
 
-    for (Organizm* organizm : organizmy)
+    for (int i = 0; i < (int)organizmy.size();)
     {
-        if(organizm->is_alive() == false){{
-            this->removeOrganism(organizm);
-        }}
+        if(organizmy[i]->is_alive() == false){
+            this->removeOrganism(organizmy[i]);
+        } else{
+            i++;
+        }
     }
     
     
@@ -263,9 +271,9 @@ void Swiat::addOrganism(Organizm* organizm){
 }
 
 void Swiat::removeOrganism(Organizm* organizm){
-
+    if(grid[organizm->getY()][organizm->getX()] == organizm){
     grid[organizm->getY()][organizm->getX()] = nullptr;
-
+    }
     for (int i = 0; i < organizmy.size(); i++)
     {
         if(organizmy[i] == organizm){

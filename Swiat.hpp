@@ -37,6 +37,7 @@ class Swiat{
         
 
     public:
+        void updateGrid(Organizm* o, Vector2d old_cords, Vector2d new_cords);
         void add_log(std::string log);
         void run();
         Swiat();
