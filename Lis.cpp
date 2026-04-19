@@ -27,7 +27,7 @@ Vector2d Lis::randomMove(){
 
 
     Vector2d c = this->cords;
-    if(c.x + 1 < WORLD_WIDTH){
+    if(c.x + 1 <= WORLD_WIDTH){
         Organizm* cell = world->getCell({c.x+1, c.y});
         if(cell == nullptr || cell->getSila() <= this->getSila()){
             available_moves.push_back({c.x+1, c.y});
@@ -41,7 +41,7 @@ Vector2d Lis::randomMove(){
         }
 
     }
-    if(c.y + 1 < WORLD_HEIGHT){
+    if(c.y + 1 <= WORLD_HEIGHT){
         Organizm* cell = world->getCell({c.x, c.y+1});
         if(cell == nullptr || cell->getSila() <= this->getSila()){
             available_moves.push_back({c.x, c.y+1});

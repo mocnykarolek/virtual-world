@@ -35,7 +35,7 @@ void Mlecz::akcja(){
             success = true;
         }
 
-        if(success) break;
+        
     }
     
 

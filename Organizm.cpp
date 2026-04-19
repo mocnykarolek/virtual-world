@@ -43,7 +43,7 @@ Vector2d Organizm::randomMove(){
 
         condition_x = vec.x > 0 && vec.x <= WORLD_WIDTH;
 
-        condition_y = vec.y > 0 && vec.y < WORLD_HEIGHT;
+        condition_y = vec.y > 0 && vec.y <= WORLD_HEIGHT;
 
     }while(!(condition_x && condition_y));
 

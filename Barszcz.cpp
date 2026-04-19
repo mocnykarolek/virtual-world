@@ -6,7 +6,7 @@ Barszcz::Barszcz(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
     asciiSymbol = 'B';
     sila = 10;
     age = 0;
-    name="Trawa";
+    name="Barszcz Sosnowskiego";
     alive = true;
 
 
@@ -67,6 +67,7 @@ void Barszcz::eaten_plant(Organizm* attacker){
 
     this->kill();
     world->add_log("Barszcz Sosnowskiego zabija zwierze");
+    attacker->kill();
 }
 
 

@@ -1,13 +1,7 @@
 #include "Czlowiek.hpp"
 
 
-// void Czlowiek::setInitailCords(Vector2d cords){
 
-//     this->cords = cords;
-    
-
-
-// }
 
 Czlowiek::Czlowiek(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
@@ -20,14 +14,10 @@ Czlowiek::Czlowiek(int x, int y, Swiat* world) : Zwierze(x, y, world){
     special_ability_acticated = false;
     elixir_bonus = 0;
     this->sila = 5 + elixir_bonus;
+    cooldown_left = 0;
 
 }
 
-void Czlowiek::nextMove(int direction){
-
-    
-    
-}
 
 void Czlowiek::handle_special_ability(){
 
@@ -35,8 +25,9 @@ void Czlowiek::handle_special_ability(){
         elixir_bonus--;
     }
     
-    if(special_ability_acticated && current_round - round_of_activation >= 10){
+    if(special_ability_acticated && current_round - round_of_activation >= 5){
         special_ability_acticated = false;
+        cooldown_left = 5;
         world->add_log("Czlowiekowi skonczyl sie eliksir");
     }
 
@@ -45,16 +36,17 @@ void Czlowiek::handle_special_ability(){
 
 
 void Czlowiek::akcja(){
-    if(world->human_special_ability_activated() != -1 && special_ability_acticated != true){
+    if(world->human_special_ability_activated() != -1 && special_ability_acticated != true && cooldown_left == 0){
         special_ability_acticated = true;
         elixir_bonus = 5;
         world->add_log("Czlowiek wypil magiczny eliksir");
         round_of_activation = world->human_special_ability_activated();
     }
-    
-    handle_special_ability();
-    world->add_log(std::to_string(getSila()));
+    if(cooldown_left >0) cooldown_left--;
     current_round = world->get_current_round();
+    handle_special_ability();
+    // world->add_log(std::to_string(getSila()));
+    
 
     prev_cords = this->cords;
 

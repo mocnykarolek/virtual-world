@@ -87,13 +87,16 @@ std::vector<Vector2d> Swiat::getFreeNeighbours(Vector2d vec){
     if(vec.y < WORLD_HEIGHT && grid[vec.y+1][vec.x] == nullptr){
         
         positions_array.push_back({vec.x, vec.y+1});
-    } else if(vec.y > 1 && grid[vec.y-1][vec.x] == nullptr){
+    } 
+    if(vec.y > 1 && grid[vec.y-1][vec.x] == nullptr){
         positions_array.push_back({vec.x, vec.y-1});
         
-    } else if(vec.x < WORLD_WIDTH && grid[vec.y][vec.x+1] == nullptr){
+    }
+    if(vec.x < WORLD_WIDTH && grid[vec.y][vec.x+1] == nullptr){
         positions_array.push_back({vec.x+1, vec.y});
        
-    } else if(vec.x > 1 && grid[vec.y][vec.x-1] == nullptr){
+    } 
+    if(vec.x > 1 && grid[vec.y][vec.x-1] == nullptr){
         positions_array.push_back({vec.x-1, vec.y});
         
     }
@@ -249,6 +252,7 @@ void Swiat::collision_handling(){
 
 void Swiat::wykonajTure(){
     logs.erase(logs.begin(), logs.end());
+    mvwprintw(menu, 1,10, "Karol Oledzki 208226");
     std::string test_log = "Karol Oledzki 208226";
     add_log(test_log);
     add_log("Nowa Tura");
@@ -256,9 +260,9 @@ void Swiat::wykonajTure(){
     
     sort(organizmy.begin(), organizmy.end(), [](Organizm*a, Organizm* b){ 
         if(a->getInicjatywa() == b->getInicjatywa()){
-            return a->getAge() < b->getAge();
+            return a->getAge() > b->getAge();
         }
-        else return a->getInicjatywa() < b->getInicjatywa();
+        else return a->getInicjatywa() > b->getInicjatywa();
     }
     );
     int start_number = organizmy.size();
@@ -401,19 +405,19 @@ bool Swiat::handle_input(){
         ch = getch();
         switch (ch)
         {
-        case 'w':
+        case KEY_UP:
             next_human_move = NORTH;
             end_of_check = true;
             break;
-        case 'd':
+        case KEY_RIGHT:
             next_human_move = EAST;
             end_of_check = true;
             break;
-        case 's':
+        case KEY_DOWN:
             next_human_move = SOUTH;
             end_of_check = true;
             break;
-        case 'a':
+        case KEY_LEFT:
             next_human_move = WEST;
             end_of_check = true;
             break;

@@ -24,6 +24,7 @@ bool Jagoda::czyOdbilAtak(Organizm* attacker){return false;}
 void Jagoda::eaten_plant(Organizm* attacker){
 
     this->kill();
+    attacker->kill();
     world->add_log("Wilcza jagoda zabija zwierze");
 }
 

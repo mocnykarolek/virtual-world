@@ -38,7 +38,7 @@ class Organizm{
         virtual bool is_plant();
         virtual void akcja()=0;
         void increaseStrength(int points);
-        int getSila();
+        virtual int getSila();
         int getInicjatywa();
         int getAge();
         int getX();

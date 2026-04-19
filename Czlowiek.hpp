@@ -12,6 +12,7 @@ class Czlowiek : public Zwierze {
         int round_of_activation;
         int current_round;
         int elixir_bonus;
+        int cooldown_left;
 
     protected:
 
@@ -25,7 +26,7 @@ class Czlowiek : public Zwierze {
         void new_organism(Vector2d parent_cords);
         // bool czyOdbilAtak(Organizm* attacker);
         // void kolizja(Organizm* other);
-        void nextMove(int direction);
+        
         int getSila();
 
 
