@@ -53,7 +53,7 @@ Vector2d Swiat::random_unoccupied_cords(){
     int random_x = (std::rand() % WORLD_WIDTH) + 1;
     int random_y = (std::rand() % WORLD_HEIGHT) + 1;
     
-    while(grid[random_x][random_y] != nullptr){
+    while(grid[random_y][random_x] != nullptr){
         random_x = (std::rand() % WORLD_WIDTH) + 1;
         random_y = (std::rand() % WORLD_HEIGHT) + 1;
 

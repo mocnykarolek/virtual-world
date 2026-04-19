@@ -1,13 +1,7 @@
 #include "Lis.hpp"
 
 
-// void Czlowiek::setInitailCords(Vector2d cords){
 
-//     this->cords = cords;
-    
-
-
-// }
 
 Lis::Lis(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
@@ -21,8 +15,7 @@ Lis::Lis(int x, int y, Swiat* world) : Zwierze(x, y, world){
 }
 
 Vector2d Lis::randomMove(){
-    // potencjalny segment
-    
+   
     std::vector<Vector2d> available_moves;
 
 
@@ -66,7 +59,7 @@ Vector2d Lis::randomMove(){
 
 }
 
-// bool Wilk::czyOdbilAtak(Organizm* attacker){}
+
 
 void Lis::new_organism(Vector2d child_cords){
 

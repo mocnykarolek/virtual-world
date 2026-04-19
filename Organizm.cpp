@@ -7,8 +7,7 @@ Organizm::Organizm(int x, int y, Swiat* world){
     cords.y = y;
     this->world = world;
     can_organism_move = 1;
-    // this->asciiSymbol = 'd';
-    // alive = true;
+
 
 }
 
@@ -35,8 +34,7 @@ Vector2d Organizm::randomMove(){
 
         if(side) ver = dir;
         else hor = dir;
-        // if(rand_x == 0) rand_x = -1;
-        // if(rand_y == 0) rand_y = -1;
+        
 
         vec.x = this->cords.x + hor*shift_range;
         vec.y = this->cords.y + ver*shift_range;

@@ -10,7 +10,7 @@ class Roslina : public Organizm {
     
     
     protected:
-        // virtual void akcja()=0;
+        
         virtual bool czyOdbilAtak(Organizm* attacker)=0;
         virtual void reporoduction_attempt(Organizm* o);
         bool is_plant();

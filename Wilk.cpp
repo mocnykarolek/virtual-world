@@ -1,13 +1,7 @@
 #include "Wilk.hpp"
 
 
-// void Czlowiek::setInitailCords(Vector2d cords){
 
-//     this->cords = cords;
-    
-
-
-// }
 
 Wilk::Wilk(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
@@ -20,7 +14,7 @@ Wilk::Wilk(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
 }
 
-// bool Wilk::czyOdbilAtak(Organizm* attacker){}
+
 
 void Wilk::new_organism(Vector2d child_cords){
 

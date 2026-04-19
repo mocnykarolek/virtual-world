@@ -5,19 +5,7 @@ Zwierze::Zwierze(int x, int y, Swiat* world) : Organizm(x, y ,world){
           shift_range =1;                                                                             
 }
 
-// bool Zwierze::czyOdbilAtak(Organizm* attacker){
 
-//     attacker->getSila();
-    
-
-//     return false;
-// }
-
-// void Zwierze::kolizja(Organizm* other){
-
-    
-
-// }
 
 void Zwierze::akcja(){
     // this->prev_cords = this->cords;
@@ -47,7 +35,7 @@ void Zwierze::akcja(){
     }
 
 
-    // this->world->add_log("Wilk idzie");
+  
 
 
 

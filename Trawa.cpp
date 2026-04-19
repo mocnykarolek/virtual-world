@@ -14,9 +14,7 @@ Trawa::Trawa(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 }
 
 
-// void Trawa::akcja(){
 
-// }
         
 bool Trawa::czyOdbilAtak(Organizm* attacker){
     (void)attacker;

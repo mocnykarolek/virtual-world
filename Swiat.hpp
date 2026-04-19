@@ -10,7 +10,7 @@ class Organizm;
 
 class Swiat{
     private:
-        // Organizm* organizmy;
+       
         std::vector<Organizm*> organizmy;
         std::vector<std::vector<Organizm*>> grid;
         int next_human_move;

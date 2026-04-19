@@ -1,13 +1,7 @@
 #include "Antylopa.hpp"
 
 
-// void Czlowiek::setInitailCords(Vector2d cords){
 
-//     this->cords = cords;
-    
-
-
-// }
 
 Antylopa::Antylopa(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
@@ -50,7 +44,7 @@ bool Antylopa::czyOdbilAtak(Organizm* attacker){
 }
 
 
-// bool Wilk::czyOdbilAtak(Organizm* attacker){}
+
 
 void Antylopa::new_organism(Vector2d child_cords){
 

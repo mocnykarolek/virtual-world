@@ -1,13 +1,7 @@
 #include "Zolw.hpp"
 
 
-// void Czlowiek::setInitailCords(Vector2d cords){
 
-//     this->cords = cords;
-    
-
-
-// }
 
 Zolw::Zolw(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
@@ -48,7 +42,7 @@ bool Zolw::czyOdbilAtak(Organizm* attacker){
 
 
 
-// bool Owca::czyOdbilAtak(Organizm* attacker){}
+
 
 void Zolw::new_organism(Vector2d child_cords){
 

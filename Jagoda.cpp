@@ -14,9 +14,7 @@ Jagoda::Jagoda(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 }
 
 
-// void Trawa::akcja(){
 
-// }
         
 bool Jagoda::czyOdbilAtak(Organizm* attacker){
     (void)attacker;

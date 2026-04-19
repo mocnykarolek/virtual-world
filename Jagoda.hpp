@@ -15,11 +15,11 @@ class Jagoda : public Roslina {
     public:
 
         Jagoda(int x, int y, Swiat* world);
-        // void akcja();
+        
         
         bool czyOdbilAtak(Organizm* attacker);
         
-        // void reporoduction_attempt(Organizm* o);
+        
         void new_organism(Vector2d child_cords);
     
 

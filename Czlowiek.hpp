@@ -22,10 +22,9 @@ class Czlowiek : public Zwierze {
         Czlowiek(int x, int y, Swiat* world);
         void akcja();
         void handle_special_ability();
-        // Vector2d randomMove();
+       
         void new_organism(Vector2d parent_cords);
-        // bool czyOdbilAtak(Organizm* attacker);
-        // void kolizja(Organizm* other);
+       
         
         int getSila();
 

@@ -1,13 +1,7 @@
 #include "Owca.hpp"
 
 
-// void Czlowiek::setInitailCords(Vector2d cords){
 
-//     this->cords = cords;
-    
-
-
-// }
 
 Owca::Owca(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
@@ -20,7 +14,6 @@ Owca::Owca(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
 }
 
-// bool Owca::czyOdbilAtak(Organizm* attacker){}
 
 
 

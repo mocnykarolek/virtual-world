@@ -14,9 +14,7 @@ Mlecz::Mlecz(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 }
 
 
-// void Trawa::akcja(){
 
-// }
         
 bool Mlecz::czyOdbilAtak(Organizm* attacker){
     (void)attacker;
