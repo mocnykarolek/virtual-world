@@ -13,6 +13,7 @@ class Roslina : public Organizm {
         // virtual void akcja()=0;
         virtual bool czyOdbilAtak(Organizm* attacker)=0;
         virtual void reporoduction_attempt(Organizm* o);
+        bool is_plant();
     public:
         Roslina(int x, int y, Swiat* world);
         virtual void akcja();

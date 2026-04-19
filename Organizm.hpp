@@ -18,6 +18,7 @@ class Organizm{
         Swiat* world;
         int age;
         bool alive;
+        int shift_range;
         
         
         virtual bool czyOdbilAtak(Organizm* attacker);
@@ -26,12 +27,15 @@ class Organizm{
         bool can_organism_move;
         virtual void new_organism(Vector2d parent_cords)=0;
         virtual void eaten_plant(Organizm* attacker);
+        virtual Vector2d action_modifier();
+        
         
     public:
         Organizm(int x, int y, Swiat* world);
         void setInitailCords(Vector2d cords);
         virtual void kolizja(Organizm* other);
         void rysowanie();
+        virtual bool is_plant();
         virtual void akcja()=0;
         void increaseStrength(int points);
         int getSila();

@@ -3,6 +3,7 @@
 Roslina::Roslina(int x, int y, Swiat* world) : Organizm(x, y ,world){
     
     inicjatywa = 0;
+    shift_range = 0;
     
     
 }
@@ -24,6 +25,9 @@ void Roslina::akcja(){
 
 
 
+}
+bool Roslina::is_plant(){
+    return true;
 }
 
 void Roslina::reporoduction_attempt(Organizm* o){

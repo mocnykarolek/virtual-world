@@ -11,6 +11,12 @@ Organizm::Organizm(int x, int y, Swiat* world){
     // alive = true;
 
 }
+
+Vector2d Organizm::action_modifier(){
+
+    return randomMove();
+}
+
 Vector2d Organizm::randomMove(){
 
     
@@ -32,8 +38,8 @@ Vector2d Organizm::randomMove(){
         // if(rand_x == 0) rand_x = -1;
         // if(rand_y == 0) rand_y = -1;
 
-        vec.x = this->cords.x + hor;
-        vec.y = this->cords.y + ver;
+        vec.x = this->cords.x + hor*shift_range;
+        vec.y = this->cords.y + ver*shift_range;
 
         condition_x = vec.x > 0 && vec.x <= WORLD_WIDTH;
 
@@ -62,7 +68,9 @@ bool Organizm::is_alive(){
 void Organizm::kill(){
     this->alive = false;
 }
-
+bool Organizm::is_plant(){
+    return false;
+}
 
 
 void Organizm::kolizja(Organizm* other){
@@ -89,22 +97,19 @@ void Organizm::kolizja(Organizm* other){
         
     }
     else{ // combat
-        // if(this->getSila() > other->getSila()){
 
-        //     other->kill();
-        // }else if(this->getSila() < other->getSila()){
-        //     this->kill();
 
-        // }else{
+        if(other->czyOdbilAtak(this)){
+            can_organism_move = false;
+            world->add_log("Atak zostal unikniety");
 
-        //     other->kill();
-        // }
-        if(czyOdbilAtak(other)){
-            eaten_plant(this);
-
+        }else if(this->getSila() >= other->getSila()){
+            other->eaten_plant(this);
             other->kill();
-        }
-        else {
+            // return true;
+            
+        }else{
+            if(other->is_plant()) other->eaten_plant(this);
             this->kill();
         }
 
@@ -120,18 +125,8 @@ void Organizm::increaseStrength(int points){
 
 
 bool Organizm::czyOdbilAtak(Organizm* attacker){
-        if(this->getSila() > attacker->getSila()){
-            return true;
-            
-        }else if(this->getSila() < attacker->getSila()){
-            return false;
-            
-
-
-        }else{
-            return true;
-            
-        }
+        return false;
+        
 
 
 }

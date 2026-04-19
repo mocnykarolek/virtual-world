@@ -15,6 +15,7 @@ class Swiat{
         std::vector<std::vector<Organizm*>> grid;
         int next_human_move;
         int numer_tury;
+
         void wykonajTure();
         void rysujSwiat();
         WINDOW *win;
@@ -31,12 +32,14 @@ class Swiat{
 
         Vector2d random_unoccupied_cords();
         void collision_handling();
-
+        bool special_ability;
 
     protected:
         
 
     public:
+        int human_special_ability_activated();
+        int get_current_round() const;
         void updateGrid(Organizm* o, Vector2d old_cords, Vector2d new_cords);
         void add_log(std::string log);
         void run();

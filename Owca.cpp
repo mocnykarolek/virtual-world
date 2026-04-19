@@ -22,6 +22,9 @@ Owca::Owca(int x, int y, Swiat* world) : Zwierze(x, y, world){
 
 // bool Owca::czyOdbilAtak(Organizm* attacker){}
 
+
+
+
 void Owca::new_organism(Vector2d child_cords){
 
 

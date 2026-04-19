@@ -2,7 +2,7 @@
 
 
 Zwierze::Zwierze(int x, int y, Swiat* world) : Organizm(x, y ,world){
-                                                                                        
+          shift_range =1;                                                                             
 }
 
 // bool Zwierze::czyOdbilAtak(Organizm* attacker){
@@ -22,8 +22,9 @@ Zwierze::Zwierze(int x, int y, Swiat* world) : Organizm(x, y ,world){
 void Zwierze::akcja(){
     // this->prev_cords = this->cords;
     prev_cords = this->cords;
-    Vector2d new_cords = randomMove();
+    Vector2d new_cords = action_modifier();
     
+
     can_organism_move =true;
     if(world->isOccupied(new_cords.x,new_cords.y)){
         

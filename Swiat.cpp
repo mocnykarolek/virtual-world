@@ -12,6 +12,10 @@
 #include "Lis.hpp"
 
 #include "Guarana.hpp"
+#include "Zolw.hpp"
+#include "Antylopa.hpp"
+#include "Jagoda.hpp"
+#include "Barszcz.hpp"
 
 #define WIDTH 22
 #define HEIGHT 22
@@ -180,6 +184,33 @@ void Swiat::generateInitialWorld(){
     }
 
 
+    int turtle_number = 3;
+    for (int i = 0; i < turtle_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Zolw(freeCords.x,freeCords.y, this));
+    }
+
+    int antelope_number = 4;
+    for (int i = 0; i < antelope_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Antylopa(freeCords.x,freeCords.y, this));
+    }
+
+    int belladonna_number = 3;
+    for (int i = 0; i < belladonna_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Jagoda(freeCords.x,freeCords.y, this));
+    }
+    int barszcz_number = 3;
+    for (int i = 0; i < barszcz_number; i++)
+    {
+        Vector2d freeCords = this->random_unoccupied_cords();
+        addOrganism(new Barszcz(freeCords.x,freeCords.y, this));
+    }
+
     
     // Vector2d ranCords;
     // ranCords.x = 10;
@@ -187,6 +218,11 @@ void Swiat::generateInitialWorld(){
     // czlowiek->setInitailCords(ranCords);
     // this->addOrganism()
 
+}
+
+int Swiat::get_current_round() const{
+
+    return numer_tury;
 }
 
 void Swiat::updateGrid(Organizm* o, Vector2d old_cords, Vector2d new_cords){
@@ -347,6 +383,14 @@ int Swiat::get_human_dir() const{
 
 }
 
+int Swiat::human_special_ability_activated(){
+
+    if(special_ability){
+        return numer_tury;
+    }
+    else return -1;
+    
+}
 
 bool Swiat::handle_input(){
     
@@ -374,6 +418,10 @@ bool Swiat::handle_input(){
             end_of_check = true;
             break;
         case 'e':
+            special_ability = true;
+            
+            break;
+        case 'q':
             return true;
         
         default:
@@ -395,7 +443,7 @@ void Swiat::run(){
     rysujSwiat();
     while(!GameOver){
         wrefresh(win);
-        
+        special_ability = false;
         GameOver = handle_input();
         
 
