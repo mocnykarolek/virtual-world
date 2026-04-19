@@ -22,7 +22,7 @@ Antylopa::Antylopa(int x, int y, Swiat* world) : Zwierze(x, y, world){
 }
 
 bool Antylopa::czyOdbilAtak(Organizm* attacker){
-
+    (void)attacker;
     int chance = rand() %2;
     if(chance == 1){
         std::vector<Vector2d> available_cells = world->getFreeNeighbours(this->cords);

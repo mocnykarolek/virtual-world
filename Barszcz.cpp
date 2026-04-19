@@ -49,7 +49,7 @@ std::vector<Organizm*> Barszcz::get_neighboring_animals(){
 void Barszcz::akcja(){
 
     std::vector<Organizm*> neighboring_cells = get_neighboring_animals();
-    for (int i = 0; i < neighboring_cells.size(); i++)
+    for (int i = 0; i < (int)neighboring_cells.size(); i++)
     {
         world->add_log("Barszcz zabil zwierze");
         neighboring_cells[i]->kill();
@@ -60,7 +60,9 @@ void Barszcz::akcja(){
 
 }
         
-bool Barszcz::czyOdbilAtak(Organizm* attacker){return false;}
+bool Barszcz::czyOdbilAtak(Organizm* attacker){
+    (void)attacker;
+    return false;}
 
 
 void Barszcz::eaten_plant(Organizm* attacker){

@@ -39,7 +39,7 @@ Swiat::Swiat(){
     menu = newwin(HEIGHT, WIDTH*2, 1, WIDTH+1);
     next_human_move = 0;
     grid.resize(WORLD_HEIGHT +1, std::vector<Organizm*>(WORLD_HEIGHT +1, nullptr));
-    Vector2d test = random_unoccupied_cords();
+    
 
 
     generateInitialWorld();
@@ -118,6 +118,7 @@ void Swiat::render_logs(){
     while((int)logs.size() > max_logs) {logs.erase(logs.begin());}
     
     werase(menu);
+    mvwprintw(menu, 21,4, "Karol Oledzki 208226");
     mvwprintw(menu, 0, 0," Numer Tury: %d", this->numer_tury);
     for (int i = 0; i < (int)logs.size(); i++)
     {
@@ -138,8 +139,8 @@ void Swiat::generateInitialWorld(){
 
     Czlowiek* czlowiek = new Czlowiek(10,10,this);
     addOrganism(czlowiek);
-    Trawa* trawa = new Trawa(1,1, this);
-    addOrganism(trawa);
+    // Trawa* trawa = new Trawa(1,1, this);
+    // addOrganism(trawa);
 
     
     // dodaj trawe
@@ -215,11 +216,7 @@ void Swiat::generateInitialWorld(){
     }
 
     
-    // Vector2d ranCords;
-    // ranCords.x = 10;
-    // ranCords.y = 10;
-    // czlowiek->setInitailCords(ranCords);
-    // this->addOrganism()
+
 
 }
 
@@ -252,9 +249,9 @@ void Swiat::collision_handling(){
 
 void Swiat::wykonajTure(){
     logs.erase(logs.begin(), logs.end());
-    mvwprintw(menu, 1,10, "Karol Oledzki 208226");
-    std::string test_log = "Karol Oledzki 208226";
-    add_log(test_log);
+    // mvwprintw(menu, 1,10, "Karol Oledzki 208226");
+    // std::string test_log = "Karol Oledzki 208226";
+    // add_log(test_log);
     add_log("Nowa Tura");
 
     
@@ -370,7 +367,7 @@ void Swiat::removeOrganism(Organizm* organizm){
     if(grid[organizm->getY()][organizm->getX()] == organizm){
     grid[organizm->getY()][organizm->getX()] = nullptr;
     }
-    for (int i = 0; i < organizmy.size(); i++)
+    for (int i = 0; i < (int)organizmy.size(); i++)
     {
         if(organizmy[i] == organizm){
             organizmy.erase(i + organizmy.begin());

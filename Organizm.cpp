@@ -125,6 +125,7 @@ void Organizm::increaseStrength(int points){
 
 
 bool Organizm::czyOdbilAtak(Organizm* attacker){
+        (void)attacker;
         return false;
         
 
@@ -133,7 +134,9 @@ bool Organizm::czyOdbilAtak(Organizm* attacker){
 
 
 
-void Organizm::eaten_plant(Organizm* attacker){}
+void Organizm::eaten_plant(Organizm* attacker){
+    (void)attacker;
+}
 
 void Organizm::setInitailCords(Vector2d cords){
 

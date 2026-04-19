@@ -18,7 +18,9 @@ Guarana::Guarana(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 
 // }
         
-bool Guarana::czyOdbilAtak(Organizm* attacker){return false;}
+bool Guarana::czyOdbilAtak(Organizm* attacker){
+    (void)attacker;
+    return false;}
 
 
 void Guarana::eaten_plant(Organizm* attacker){

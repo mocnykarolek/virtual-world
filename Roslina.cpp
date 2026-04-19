@@ -8,7 +8,7 @@ Roslina::Roslina(int x, int y, Swiat* world) : Organizm(x, y ,world){
     
 }
 void Roslina::kolizja(Organizm* other){
-
+    (void)other;
 }
 
 void Roslina::akcja(){

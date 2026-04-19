@@ -18,13 +18,15 @@ Mlecz::Mlecz(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 
 // }
         
-bool Mlecz::czyOdbilAtak(Organizm* attacker){return false;}
+bool Mlecz::czyOdbilAtak(Organizm* attacker){
+    (void)attacker;
+    return false;}
 
 
 
 void Mlecz::akcja(){
     int attempts = 3;
-    bool success= false;
+    
     for (int i = 0; i < attempts; i++)
     {
         double probality = (rand() % 44) ;
@@ -32,7 +34,7 @@ void Mlecz::akcja(){
         if(probality == 3)
         {
             reporoduction_attempt(this);
-            success = true;
+            
         }
 
         

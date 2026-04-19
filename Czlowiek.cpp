@@ -99,4 +99,6 @@ int Czlowiek::getSila(){
     return sila + elixir_bonus;
 }
 
-void Czlowiek::new_organism(Vector2d parent_cords){}
+void Czlowiek::new_organism(Vector2d parent_cords){
+    (void)parent_cords;
+}

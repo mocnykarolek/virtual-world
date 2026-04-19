@@ -18,7 +18,9 @@ Jagoda::Jagoda(int x, int y, Swiat* world) : Roslina::Roslina(x, y, world){
 
 // }
         
-bool Jagoda::czyOdbilAtak(Organizm* attacker){return false;}
+bool Jagoda::czyOdbilAtak(Organizm* attacker){
+    (void)attacker;
+    return false;}
 
 
 void Jagoda::eaten_plant(Organizm* attacker){
